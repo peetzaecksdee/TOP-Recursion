@@ -8,17 +8,31 @@ function mergeSort(arr) {
 }
 
 function merge(arr1, arr2) {
+  let a = 0, b = 0;
   let res = [];
 
-  while (arr1.length && arr2.length) {
-    if (arr1[0] < arr2[0]) {
-      res.push(arr1.shift());
+  while (a < arr1.length && b < arr2.length) {
+    if (arr1[a] < arr2[b]) {
+      res.push(arr1[a]);
+      a++;
     } else {
-      res.push(arr2.shift());
+      res.push(arr2[b]);
+      b++;
     }
   }
+
+  while (a < arr1.length) {
+    res.push(arr1[a]);
+    a++;
+  }
+
+  while (b < arr2.length) {
+    res.push(arr2[b]);
+    b++;
+  }
+
+  return res;
   
-  return [...res, ...arr1, ...arr2] // res.concat(arr1).concat(arr2);
 }
 
 console.log(mergeSort([3, 2, 1, 13, 8, 5, 0, 1]));
